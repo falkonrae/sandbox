@@ -1,47 +1,27 @@
-#include <stdarg.h>
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/14 13:03:17 by vjacob            #+#    #+#             */
+/*   Updated: 2021/01/14 13:59:34 by vjacob           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
+#include "libftprintf.h"
 
-void	ft_putstr(char *s)
-{
-	if (s)
-		while (*s)
-			ft_putchar(*(s++));
-}
-
-void	ft_putnbr(int n)
-{
-	if (n == -2147483648)
-	{
-		ft_putstr("-2");
-		n = 147483648;
-	}
-	if (n < 0)
-	{
-		ft_putchar('-');
-		n = -n;
-	}
-	if (n > 9)
-	{
-		ft_putnbr(n / 10);
-		ft_putchar(n % 10 + '0');
-	}
-	else
-		ft_putchar(n + '0');
-}
-
+gi
 int 	ft_printf(const char *s, ...)
 {
 	va_list		ap;
 	char *name;
 	char buf;
 	unsigned int days;
+	t_list info;
 	va_start(ap, s);
-
+	
 	name = va_arg(ap, char*);
 	days = va_arg(ap, unsigned int);
 	while (*s != '\0')
