@@ -10,54 +10,67 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+//#include "libftprintf.h"
+#include <stdio.h>
 
-void	ft_putnbr(int n)
+// void	ft_putnbr(int n)
+// {
+// 	if (n == -2147483648)
+// 	{
+// 		ft_putstr("-2");
+// 		n = 147483648;
+// 	}
+// 	if (n < 0)
+// 	{
+// 		ft_putchar('-');
+// 		n = -n;
+// 	}
+// 	if (n > 9 && n <=16)
+// 		ft_putchar(n % 16 + 'A');
+// 	if (n > 16)
+// 	{
+// 		ft_putnbr(n / 16);
+// 		ft_putchar(n % 16 + '0');
+// 	}
+// 	else
+// 		ft_putchar(n + '0');
+// }
+
+size_t lenght_of_number(int a)
 {
-	if (n == -2147483648)
+	int i;
+	i = 0;
+	while (a >= 16)
 	{
-		ft_putstr("-2");
-		n = 147483648;
+		a = a / 16;
+		i++;
 	}
-	if (n < 0)
-	{
-		ft_putchar('-');
-		n = -n;
-	}
-	if (n > 9 && n <=16)
-		ft_putchar(n % 10 + '101');
-	if (n > 16)
-	{
-		ft_putnbr(n / 10);
-		ft_putchar(n % 10 + '0');
-	}
-	else
-		ft_putchar(n + '0');
+	return (i);
 }
 
 int main()
 {
 	int a = 2336;
 	int b;
-	int i = 0;
-	b = a;
-	char *c;
-	while (a >= 16)
-	{
-		a = a / 16;
-		i++;
-	}
+	size_t i;
+	i = lenght_of_number(a);
+	
+	char c[lenght_of_number(a)];
+	
 	while (b >= 16)
 	{
 		b = a % 16;
 		a = a / 16;
-		c[i] = b + '0';
+		if (b > 9 && b <=16)
+			c[i] = b + 'A';
+		else
+			c[i] = b + '0';
 		i--;
 	}
-	c[i] = a + '0';
-	j = i;
-	d = malloc(sizeof(char) * i);
-	
+	if (a > 9 && b <=16)
+			c[i] = b + 'A';
+		else
+			c[i] = b + '0';
 	
 	printf("mine = %s\n", c);
 	printf("right = %x", 2336);
