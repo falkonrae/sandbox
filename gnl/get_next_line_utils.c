@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 08:10:02 by marvin            #+#    #+#             */
-/*   Updated: 2021/01/15 08:10:02 by marvin           ###   ########.fr       */
+/*   Updated: 2021/01/15 15:03:50 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (new_string);
 }
 
-char	*ft_strnew(size_t size)
+char	*ft_new(size_t size)
 {
 	char	*arr;
 	size_t	i;

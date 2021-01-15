@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   x_xode.c                                           :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/13 16:47:11 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/13 17:11:39 by vjacob           ###   ########.fr       */
+/*   Created: 2020/11/29 12:24:06 by wtahm             #+#    #+#             */
+/*   Updated: 2021/01/15 16:45:01 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#ifndef GET_NEXT_LINE
+#define GET_NEXT_LINE
 
-int main()
-{
-	int a = 2336;
-	int b;
-	b = a % 16;	
-	while (a > 16)
-	{
-		a = a / 16;
-		b = b + (a % 16)*10;
-	}
-	printf("mine = %d\n", b);
-	printf("right = %x", 2336);
-}
+#include <string.h>
+#include <stdlib.h>
+#include <stddef.h>
+#include <unistd.h>
+#include <fcntl.h>
+
+
+size_t	ft_strlen(const char *s);
+char	*ft_strchr(char *s, int c);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strdup(const char *s1);
+void	ft_strlcpy(char *dst, char *src);
+
+int 	get_next_line(int fd, char **line);
+
+#endif
