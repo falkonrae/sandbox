@@ -12,25 +12,44 @@
 
 #include "get_next_line.h"
 
+char *check_ost(char	*ost, char **line)
+{
+	char *s_new;
+
+	s_new = NULL;
+	if (ost)
+	{
+		if (s_new = ft_strchr(ost, '\n'))
+		{
+			s_new = '\0';
+			*line = ft_strdup(ost);
+			ft_strcpy(ost, ++s_new);
+		}
+		else
+		{
+			*line = ft_strdup(ost);
+			ft_strclr(ost);
+		}
+	}
+	else
+		*line = ft_strnew(1);
+	return (s_new);
+}
+
+
 int get_next_line(int fd, char **line)
 {
 	char 		buf[10 + 1];
 	char 		*new_s;
-	int 		flag;
 	static char	*ost;
 
-	flag = 1;
 	int 	readed_byte;
-	if (ost)
-		*line = ft_strdup(ost);
-	else
-		*line = ft_strnew(1);
-	while(flag && (readed_byte = read(fd, buf, 10)))
+	new_s = check_ost(ost, line);
+	while(!new_s && (readed_byte = read(fd, buf, 10)))
 	{
 		if (new_s = ft_strchr(buf, '\n'))
 		{
 			*new_s = '\0';
-			flag = 0;
 			new_s++;
 			ost = ft_strdup(new_s);
 		}

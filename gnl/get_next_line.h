@@ -23,5 +23,7 @@ size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strnew(size_t size);
 char	*ft_strchr(const char *s, int c);
+char	*ft_strcpy(char *dst, const char *src);
+void	ft_strclr(char *s);
 
 #endif

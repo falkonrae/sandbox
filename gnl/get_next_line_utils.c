@@ -107,3 +107,31 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)s + i);
 	return (0);
 }
+
+char	*ft_strcpy(char *dst, const char *src)
+{
+	size_t i;
+
+	i = 0;
+	while (src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
+}
+
+void	ft_strclr(char *s)
+{
+	int i;
+
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i] != '\0')
+	{
+		s[i] = '\0';
+		i++;
+	}
+}
