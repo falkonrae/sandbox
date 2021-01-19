@@ -128,34 +128,34 @@ int					memory_free(char **s, char **s2)
 
 char				*chk_ost(char *ost, char **line)
 {
-	char			*nline;
+	char			*symb;
 
-	nline = NULL;
+	symb = NULL;
 	if (ost)
 	{
-		if ((nline = ft_strchr(ost, '\n')))
+		if ((symb = ft_strchr(ost, '\n')))
 		{
-			*nline = '\0';
+			*symb = '\0';
 			*line = ft_strdup(ost);
-			nline++;
-			ft_strcpy(ost, nline);
+			symb++;
+			ft_strcpy(ost, symb);
 		}
 		else
 			*line = ft_strdup(ost);
 	}
 	else
 		*line = ft_strdup("");
-	return (nline);
+	return (symb);
 }
 
-void				do_if(char **buf, char **nline, char **ost)
+void				do_if(char **buf, char **symb, char **ost)
 {
-	if ((*nline = ft_strchr(*buf, '\n')))
+	if ((*symb = ft_strchr(*buf, '\n')))
 	{
-		**nline = '\0';
-		(*nline)++;
+		**symb = '\0';
+		(*symb)++;
 		free(*ost);
-		*ost = ft_strdup(*nline);
+		*ost = ft_strdup(*symb);
 	}
 }
 
@@ -163,27 +163,27 @@ int					get_next_line(int fd, char **line)
 {
 	static char		*ost;
 	char			*buf;
-	char			*nline;
+	char			*symb;
 	int				n;
 
 	if (fd < 0 || BUFFER_SIZE < 1 || !line)
 		return (-1);
 	n = 1;
-	nline = chk_ost(ost, line);
+	symb = chk_ost(ost, line);
 	if (!(buf = malloc((BUFFER_SIZE + 1) * sizeof(char))))
 		return (memory_free(&buf, line));
-	while (!nline && (n = read(fd, buf, BUFFER_SIZE)))
+	while (!symb && (n = read(fd, buf, BUFFER_SIZE)))
 	{
 		if (n < 0)
 		{
 			return (memory_free(&ost, &buf));
 		}
 		buf[n] = '\0';
-		do_if(&buf, &nline, &ost);
+		do_if(&buf, &symb, &ost);
 		*line = ft_strjoin(*line, buf);
 	}
 	free(buf);
 	if (n == 0 && ost != 0)
 		memory_free(&ost, &ost);
-	return (n || nline) ? 1 : 0;
+	return (n || symb) ? 1 : 0;
 }
