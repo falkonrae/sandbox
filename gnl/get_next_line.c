@@ -1,213 +1,97 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/10 15:13:35 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/19 14:49:24 by vjacob           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/*
+#include <stdio.h>
 #include "get_next_line.h"
 
-int free_all(char **buf, char **line)
+char		*check_ost(char *ost, int i)
 {
-	if (*buf != NULL)
-	{
-		free(*buf);
-		*buf = NULL;
-	}
-	if (*line != NULL)
-	{
-		free(*line);
-		*line = NULL;
-	}
-	return (-1);
-}
+	char			*buf;
 
-char *check_ost(char	*ost, char **line)
-{
-	char *symb;
-
-	symb = NULL;
-	if (ost)
+	if (ost[i])
 	{
-		if ((symb = ft_strchr(ost, '\n')))
-		{
-			*symb = '\0';
-			*line = ft_strdup(ost);
-			symb++;
-			ft_strcpy(ost, ++symb);
-		}
-		else
-			*line = ft_strdup(ost);
+		buf = ft_strdup(ost + i + 1);
+		free(ost);
 	}
 	else
-		*line = ft_strdup("");
-	return (symb);
-}
-
-int get_next_line(int fd, char **line)
-{
-	static char	*ost;
-	char 		*buf;
-	char 		*symb;
-	int 		readed_byte;
-
-	if (!line|| fd < 0 || BUFFER_SIZE <= 0)
-	 	return (-1);
-	if (!(buf = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
-		return (free_all(&buf, line));
-	symb = check_ost(ost, line);
-	while (!symb && ((readed_byte = read(fd, buf, BUFFER_SIZE))))
 	{
-		if (readed_byte < 0)
-			return (free_all(&ost, &buf));
-		*symb = '\0';
-		if ((symb = ft_strchr(buf, '\n')))
-		{
-			*symb = '\0';
-			symb++;
-			free(ost);
-			ost = ft_strdup(symb);
-		}
-		*line = ft_strjoin(*line, buf);
+		free(ost);
+		buf = NULL;
 	}
-	free (buf);
-	if (readed_byte == 0 && ost != 0)
-		free_all(&ost, &ost);
-	return (readed_byte || symb) ? 1 : 0;
+	return (buf);
 }
 
+int			memory_free(int ret, char **reading, char **ost)
+{
+	if (ret >= 0 && (*reading || *ost))
+	{
+		if (*reading)
+			free(*reading);
+		if (ret == 0 && *ost)
+			free(*ost);
+	}
+	if (ret == -1)
+	{
+		if (!*reading)
+			free(*reading);
+		if (*ost)
+			free(*ost);
+	}
+	return (ret);
+}
 
-#include <stdio.h>
+int		get_next_line(int fd, char **line)
+{
+	static char		*ost; // сюда кладется строка, получаемая в процессе стрджоина
+	char			*reading; // сюда кладется временно то, что мы считывыаем
+	int				ret; // количество прочитанных байт
+	int				i;
+
+	if (BUFFER_SIZE <= 0 || !line || fd < 0 ||
+		!(reading = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
+		//reading = (char *)ft_calloc(sizeof(char), (BUFFER_SIZE + 1)
+		return (memory_free(-1, &reading, &ost));
+	if (!ost)
+		ost = malloc(sizeof(char));
+		//ost = (char *)ft_calloc(sizeof(char), 1);
+	while (!ft_strchr(reading, '\n') && (ret = read(fd, reading, BUFFER_SIZE)))  //здесь записывается в буфер считанные байты и в рет кладется количество прочитанных байт
+	{
+		if (ret == -1)
+			return (memory_free(-1, &reading, &ost));
+		reading[ret] = '\0'; // пока не встретилось слэш н, ставим конец строки на расстояние ретурна.
+		printf("\e[1;92mbuf = %s\n\e[0m", reading);
+		ost = ft_strjoin(ost, reading); // в ост прибавляем
+		printf("\e[1;34most = %s\n\e[0m", ost);
+	}
+	i = 0;
+	while (ost[i] && ost[i] != '\n') //здесь считаем, сколько байтов надо записать до того, пока не встретим н
+		i++;
+	*line = ft_substr(ost, 0, i);
+	printf("\e[1;93mline = %s\n\e[0m", *line); // в лайн записываем нашу получившуюся строку без символов после н
+	ost = check_ost(ost, i); // проверяем остаток, если он больше нуля.
+	if (ret || ost)
+		return (memory_free(1, &reading, &ost));
+	return (memory_free(0, &reading, &ost));
+}
 
 int main()
 {
 	int		fd = open("text.txt", O_RDONLY);
 	char	*line;
 	
-	get_next_line(fd, &line);
-    printf("%s1\n", line);
+	while (get_next_line(fd, &line))
+	{
+	
+    printf("string - %s\n", line);
+	}
+	// get_next_line(fd, &line);
+    // printf("1 string - %s1\n", line);
     
-    get_next_line(fd, &line);
-    printf("%s2\n", line);
+    // get_next_line(fd, &line);
+    // printf("%s2\n", line);
 
-    get_next_line(fd, &line);
-    printf("%s3\n", line);
+    // get_next_line(fd, &line);
+    // printf("%s3\n", line);
 
-	get_next_line(fd, &line);
-    printf("%s4\n", line);
+	// get_next_line(fd, &line);
+    // printf("%s4\n", line);
 	
 	return (0);
 }
-*/
-
-#include "get_next_line.h"
-
-int					memory_free(char **s, char **s2)
-{
-	if (*s)
-	{
-		free(*s);
-		*s = NULL;
-	}
-	if (*s2)
-	{
-		free(*s2);
-		*s2 = NULL;
-	}
-	return (-1);
-}
-
-char				*chk_ost(char *ost, char **line)
-{
-	char			*symb;
-
-	symb = NULL;
-	if (ost)
-	{
-		if ((symb = ft_strchr(ost, '\n')))
-		{
-			*symb = '\0';
-			*line = ft_strdup(ost);
-			symb++;
-			ft_strcpy(ost, symb);
-		}
-		else
-			*line = ft_strdup(ost);
-	}
-	else
-		*line = ft_strdup("");
-	return (symb);
-}
-
-void				do_if(char **buf, char **symb, char **ost)
-{
-	if ((*symb = ft_strchr(*buf, '\n')))
-	{
-		**symb = '\0';
-		(*symb)++;
-		free(*ost);
-		*ost = ft_strdup(*symb);
-	}
-}
-
-int					get_next_line(int fd, char **line)
-{
-	static char		*ost;
-	char			*buf;
-	char			*symb;
-	int				n;
-
-	if (fd < 0 || BUFFER_SIZE < 1 || !line)
-		return (-1);
-	n = 1;
-	symb = chk_ost(ost, line);
-	if (!(buf = malloc((BUFFER_SIZE + 1) * sizeof(char))))
-		return (memory_free(&buf, line));
-	while (!symb && (n = read(fd, buf, BUFFER_SIZE)))
-	{
-		if (n < 0)
-		{
-			return (memory_free(&ost, &buf));
-		}
-		buf[n] = '\0';
-		do_if(&buf, &symb, &ost);
-		*line = ft_strjoin(*line, buf);
-	}
-	free(buf);
-	if (n == 0 && ost != 0)
-		memory_free(&ost, &ost);
-	return (n || symb) ? 1 : 0;
-}
-
-// #include <stdio.h>
-
-// int main()
-// {
-// 	int		fd = open("bible.txt", O_RDONLY);
-// 	char	*line;
-	
-// 	while (get_next_line(fd, &line))
-// 	{
-	
-//     printf("%s\n", line);
-// 	}
-// 	// get_next_line(fd, &line);
-//     // printf("%s1\n", line);
-    
-//     // get_next_line(fd, &line);
-//     // printf("%s2\n", line);
-
-//     // get_next_line(fd, &line);
-//     // printf("%s3\n", line);
-
-// 	// get_next_line(fd, &line);
-//     // printf("%s4\n", line);
-	
-// 	return (0);
-// }
