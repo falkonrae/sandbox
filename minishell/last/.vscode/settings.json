@@ -1,0 +1,14 @@
+{
+	"files.associations": {
+		"__locale": "c",
+		"ios": "c",
+		"sstream": "c",
+		"ft_shell.h": "c",
+		"__hash_table": "c",
+		"__string": "c",
+		"algorithm": "c",
+		"functional": "c",
+		"locale": "c",
+		"utility": "c"
+	}
+}
