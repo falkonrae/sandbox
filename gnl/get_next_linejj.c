@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_linegg.c                                  :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falkonrae <falkonrae@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 15:13:35 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/21 07:00:13 by falkonrae        ###   ########.fr       */
+/*   Updated: 2021/01/21 12:53:38 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-#include "get_next_line.h"
 
+#include "get_next_line.h"
+/*
 int free_all(char **buf, char **line)
 {
 	if (*buf != NULL)

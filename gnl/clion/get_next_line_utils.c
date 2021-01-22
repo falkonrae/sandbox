@@ -6,7 +6,7 @@
 /*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 15:45:14 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/21 17:08:00 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/21 15:45:15 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,63 @@ size_t	ft_strlen(char *s)
 		i++;
 	return (i);
 }
+/*
+void			*ft_calloc(size_t count, size_t size)
+{
+	void	*temp;
+	size_t	i;
 
+	i = -1;
+	if (!(temp = malloc(count * size)))
+		return (NULL);
+	if (!count || !size)
+		return (temp);
+	while (++i < count * size)
+		((unsigned char *)temp)[i] = '\0';
+	return (temp);
+}
+
+*/
+
+
+
+
+/*
+char	*ft_strchr(char *s, int c)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			return ((char *)s + i);
+		i++;
+	}
+	if (s[i] == c)
+		return ((char *)s + i);
+	return (NULL);
+}
+*/
+// char	*ft_strchr(char *s, int c)
+// {
+// 	char	*mas;
+// 	char	sym;
+// 	int		i;
+
+// 	i = 0;
+// 	mas = (char *)s;
+// 	sym = (char)c;
+// 	while (mas[i] != '\0')
+// 	{
+// 		if (mas[i] == sym)
+// 			return (&mas[i]);
+// 		i++;
+// 	}
+// 	if (mas[i] == sym)
+// 		return (&mas[i]);
+// 	return (NULL);
+// }
 char	*ft_strchr(char *s, int c)
 {
 	unsigned int	i;
@@ -65,7 +121,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	j = 0;
 	if (s1 && s2)
 	{
-		if (!(tab = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1))))
+		if (!(tab = malloc(sizeof(char) *
+		(ft_strlen(s1) + ft_strlen(s2) + 1))))
 			return (NULL);
 		while (s1[i])
 		{
@@ -83,6 +140,25 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	return (NULL);
 }
+
+// char		*ft_substr(char *s, unsigned int start, size_t len)
+// {
+// 	unsigned int	i;
+// 	char			*str;
+
+// 	i = 0;
+// 	if (!s || (start + len > ft_strlen(s)))
+// 		return (str = ft_strdup("\0"));
+// 	if (!(str = malloc(sizeof(char) * (len + 1))))
+// 		return (NULL);
+// 	while (i < len)
+// 	{
+// 		str[i] = s[start + i];
+// 		i++;
+// 	}
+// 	str[i] = '\0';
+// 	return (str);
+// }
 
 char	*ft_substr(char *s, unsigned int start, size_t len)
 {
