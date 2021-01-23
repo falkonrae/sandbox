@@ -6,11 +6,13 @@
 /*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:48:32 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/14 13:49:19 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/23 12:39:49 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+
+
 
 void	ft_putchar(char c)
 {
@@ -43,4 +45,36 @@ void	ft_putnbr(int n)
 	}
 	else
 		ft_putchar(n + '0');
+}
+
+// void		check_space(const char *s, int *i, int *len)
+// {
+// 	*i += 1;
+// 	while (s[*i] == ' ')
+// 	{
+// 		*i += 1;
+// 		*len += 1;
+// 	}
+// }   для бонусов
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
+int	ft_istype(int c)
+{
+	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' 
+	|| c == 'u' || c == 'x' || c == 'X' || c == '%')
+		return (1);
+	return (0);
+}
+
+int	ft_isflag(int c)
+{
+	if (c == '-' || c == '0' || c == '.' || c == '*')
+		return (1);
+	return (0);
 }
