@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: falkonrae <falkonrae@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:01:42 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/23 13:35:16 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/25 10:43:49 by falkonrae        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <stdarg.h>
 //#include <io.h> 
+#include <stdio.h>
  #include <unistd.h>
 
 void	ft_putchar(char c);
@@ -26,8 +27,6 @@ int		ft_isdigit(int c);
 int		ft_istype(int c);
 int		ft_isflag(int c);
 
-
-
 typedef	struct	s_list
 {
 	int			type;
@@ -35,7 +34,13 @@ typedef	struct	s_list
 	int 		minus;
 	int 		zero;
 	int 		dot;
-	int 		flags;
+	int 		star;
 }				t_list;
 
+int 	flag_dot(const char *s, int i, t_list *flags, va_list ap);
+void 	flag_width(t_list *flags, va_list ap);
+void	flag_digit(t_list *flags, char s);
+
+
+int		proc_char(t_list *flags, char c);
 #endif

@@ -3,63 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parce_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: falkonrae <falkonrae@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:13:44 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/23 13:47:11 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/25 10:48:32 by falkonrae        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int 	flag_dot(const char *s, int i, t_list flags, va_list ap)
-{
-	i++;
-	if (s[i] == '*')
-		flags->dot = va_arg(ap, int);
-	if (s[i] != '*')
-	{
-		while (ft_isdigit(s[i]))
-		{
-			flags->dot = flags->dot * 10 + s[i] - '0';
-			i++;
-		}
-	}
-	return (i);
 
+
+
+int		proc_type(t_list *flags, va_list ap)
+{
+	int len;
+
+	len = 0;
+	if (flags->type == 'c')
+		len += proc_char(flags, va_arg(ap, int));
+	// if (flags->type == 's')
+	// 	len += proc_string(flags, va_arg(ap, char *));
+	// // if (flags->type == 'p')
+	// //     len += proc_pointer(flags, va_arg(ap, unsigned long));
+	// // if (flags->type == 'd' || flags->type == 'i')
+	// //     len += proc_int(flags, va_arg(ap, int));
+	// if (flags->type == 'u')
+	// 	len += proc_uint(flags, va_arg(ap, unsigned int));
+	// if (flags->type == 'x')
+	// 	len += proc_hex(flags, va_arg(ap, unsigned int), 0);
+	// if (flags->type == 'X')
+	// 	len += proc_hex(flags, va_arg(ap, unsigned int), 1);
+	// if (flags->type == '%')
+	// 	len += proc_percent(flags);
+	return (len);
 }
 
-int		parse_flags(const char *s, int *i, t_list *flags, va_list ap)
+int		parse_flags(const char *s, int i, t_list *flags, va_list ap)
 {
-	*i += 1;
-	while (s[*i] && (ft_isdigit(s[*i]) || ft_istype(s[*i]) || ft_isflag(s[*i])))
+	while (s[i] && (ft_isdigit(s[i]) || ft_istype(s[i]) || ft_isflag(s[i])))
 	{
-		if (s[*i] == '0' && !flags->minus && flags->width)
+		i++;
+		if (s[i] == '0' && !flags->minus && !flags->width && !flags->dot)
 			flags->zero = 1;
-		if (s[*i] == '.')
-			i = flag_dot(s, *i, flags, ap);
-		if (s[*i] == '-')
+		if (s[i] == '.')
+			i = flag_dot(s, i, flags, ap);
+		if (s[i] == '-')
 		{
 			flags->minus = 1;
 			flags->zero = 0;
 		}
-		if (s[*i] == '*')
-		if (ft_isdigit(s[*i]))
-		if (ft_istype(s[*i]))
-			flags->type = s[*i];
+		if (s[i] == '*')
+			flag_width(flags, ap);
+		if (ft_isdigit(s[i]))
+			flag_digit(flags, s[i]);
+		if (ft_istype(s[i]))
+			flags->type = s[i];
 	}
-
-	return (*i);
+	return (i);
 }
 
 
-void	init_flags(t_list *flags)
+void	init_list(t_list *flags)
 {
 	flags->type = 0;
 	flags->width = 0;
 	flags->minus = 0;
 	flags->zero = 0;
-	flags->precision = -1;
+	flags->dot = -1;
 	flags->star = 0;
 }
 
@@ -73,21 +84,22 @@ int		ft_parse_input(const char *s, va_list ap)
 	i = 0;
 	while (1)
 	{
-		init_flags(&flags);
+		init_list(&flags);
 		if (!s[i])
 			return (len);
 		if (s[i] == '%')
 		{
 			// check_space(s, &i, &len); для бонусов
-			i = parse_flags(s, &i, &flags, ap);
+			i = parse_flags(s, i, &flags, ap);
 		}
+		if (flags.type)
+			len += proc_type(&flags, ap);
 		if (s[i] != '%' || !flags.type)
 		{
 			ft_putchar(s[i]);
 			len++;
 		}
-		if (flags.type)
-		//len = process_types(//)
+			
 		i++;
 	}
 }
