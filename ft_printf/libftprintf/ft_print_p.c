@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_p.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falkonrae <falkonrae@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:13:44 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/26 11:18:34 by falkonrae        ###   ########.fr       */
+/*   Updated: 2021/01/26 14:54:39 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+
+
+int i_count(unsigned long i)
+{
+	int count;
+	if (!i)
+		return (1);
+	count = 0;
+	while (i != 0)
+	{
+		i /= 16;
+		count++;
+	}
+	return (count);	
+}
+
 
 int		ft_print_str_p(char *s)
 {
@@ -35,38 +51,52 @@ int    proc_pointer(t_list *flags, unsigned long i)
     int count;
 
   len = 0;
-  len += ft_print_str_p("0x");
-   if (!i)
-    {
-		if (flags->dot == 0)
-		{
-			len += ft_print_str_p("0x");
-        //put string "0x" with added precision flag +length
-		//add width with zeroc + length 
-		}
-		str = "\0";
-    }
-	if (i)
+  count = i_count(i);
+  printf("i = %ld\n", i);
+  if (!(str = (char *)malloc(sizeof(char) * (count - 1))))
+	return (-1);
+	if (flags->width >= 0 && !flags->minus)
 	{
-		while (i)
-		{
-			i = i / 16 + count;
-			if (!(str = (char *)malloc(sizeof(char) * (count + 1))))
-				return (0);
-			str[ft_strlen(str)] = '\0';
-			count--;
-			if (i / 16 < 10)
-				str[count] = i % 16 + 48;
-			else
-				str[count] = i % 16 + 87;
-			i /= 16;
-			count--;
-			
-		}
+		len += ft_print_spaces(flags->width - count) + ft_putstr(*s);
+		
 	}
-    count = 0;
-  	len += ft_print_str_p("0x");
-	  //if (flags->dot >= 0)
+	if (!flags->minus) 
+		len += ft_print_str("0x", 2);
+	
+	if (flags->minus)
+	{
+		len += ft_print_str("0x", 2);
+		len += ft_print_spaces(flags->width - count);
+	}
+			// len += ft_print_str_p("0x");
+			// len += flags->dot;
+        //put string "0x" with added precision flag +length
+		//add width with zeros + length 
+			
+		// }
+		// str = "\0";
+  //  }
+// 	if (i)
+// 	{
+// 		while (i)
+// 		{
+// 			i = i / 16 + count;
+// 			if (!(str = (char *)malloc(sizeof(char) * (count + 1))))
+// 				return (0);
+// 			str[ft_strlen(str)] = '\0';
+// 			count--;
+// 			if (i / 16 < 10)
+// 				str[count] = i % 16 + 48;
+// 			else
+// 				str[count] = i % 16 + 87;
+// 			i /= 16;
+// 			count--;
+			
+// 		}
+// 	}
+//     count = 0;
+//   	len += ft_print_str_p("0x");
+// 	  //if (flags->dot >= 0)
     return (len);
 }
 

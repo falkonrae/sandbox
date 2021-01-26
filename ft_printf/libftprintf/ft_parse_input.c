@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falkonrae <falkonrae@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:13:44 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/26 11:14:34 by falkonrae        ###   ########.fr       */
+/*   Updated: 2021/01/26 14:47:38 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int		proc_type(t_list *flags, va_list ap)
 	if (flags->type == 's')
 		len += proc_string(flags, va_arg(ap, char *));
 	if (flags->type == 'p')
-	    len += proc_pointer(flags, va_arg(ap, unsigned long int));
-	// // if (flags->type == 'd' || flags->type == 'i')
-	// //     len += proc_int(flags, va_arg(ap, int));
+		len += proc_pointer(flags, va_arg(ap, unsigned long int));
+	// if (flags->type == 'd' || flags->type == 'i')
+	//     len += proc_int(flags, va_arg(ap, int));
 	// if (flags->type == 'u')
 	// 	len += proc_uint(flags, va_arg(ap, unsigned int));
 	// if (flags->type == 'x')
