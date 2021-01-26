@@ -6,7 +6,7 @@
 /*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:03:17 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/26 14:50:53 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/26 20:03:55 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int 	ft_printf(const char *s, ...)
 {
 	int			len;
-	t_list		check;
 	va_list		ap;
 
 	va_start(ap, s);
@@ -34,14 +33,16 @@ int		main()
 	int b;
 
 	//unsigned int days = 7;
-	a = ft_printf("Hello %.4s! The deadline is in u days.\n", "Aisha");
-	printf("\n");
-	b = printf("Hello %.4s! The deadline is in u days.\n", "Aisha");
-	printf("\n");
+	a = ft_printf("Hello %044s! The deadline is in u days.\n", "Aisha");
+	b = printf("Hello %044s! The deadline is in u days.\n", "Aisha");
 	printf("%d\n", a);
 	printf("%d\n", b);
-	b = printf("%-p l\n", name);
+		printf("\n");
+	b = printf("%044p l\n", "AISHA");
+	a = ft_printf("%044p l\n", "AISHA");
 	printf("%d\n", b);
-	ft_printf("%p", "Alian");
-	printf("\n");
+	printf("%d\n", a);
+	// printf("\n6gfffgg");
+	// printf("\n6ggg");
+	
 }

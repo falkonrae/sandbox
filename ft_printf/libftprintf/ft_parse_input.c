@@ -6,7 +6,7 @@
 /*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:13:44 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/26 14:47:38 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/26 20:09:13 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		parse_flags(const char *s, int i, t_list *flags, va_list ap)
 	while (s[i] && (ft_isdigit(s[i]) || ft_istype(s[i]) || ft_isflag(s[i])))
 	{
 		i++;
-		if (s[i] == '0' && !flags->minus && !flags->width && !flags->dot)
+		if (s[i] == 48 && !flags->minus && !flags->dot)
 			flags->zero = 1;
 		if (s[i] == '.')
 			i = flag_dot(s, i, flags, ap);

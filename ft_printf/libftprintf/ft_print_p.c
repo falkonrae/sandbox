@@ -6,7 +6,7 @@
 /*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:13:44 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/26 14:54:39 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/26 19:58:04 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,20 @@
 
 int i_count(unsigned long i)
 {
+	//
+	//printf("ud long = %ld\n", i);
 	int count;
 	if (!i)
 		return (1);
 	count = 0;
-	while (i != 0)
+	while (i)
 	{
 		i /= 16;
 		count++;
 	}
+	//printf("count = %d\n", count);
 	return (count);	
 }
-
 
 int		ft_print_str_p(char *s)
 {
@@ -44,45 +46,42 @@ int		ft_print_str_p(char *s)
 	return (i);
 }
 
-int    proc_pointer(t_list *flags, unsigned long i)
+int		ft_to_hex_string(unsigned long p, char **s)
 {
-    int len;
-    char *str;
-    int count;
-
-  len = 0;
-  count = i_count(i);
-  printf("i = %ld\n", i);
-  if (!(str = (char *)malloc(sizeof(char) * (count - 1))))
-	return (-1);
-	if (flags->width >= 0 && !flags->minus)
-	{
-		len += ft_print_spaces(flags->width - count) + ft_putstr(*s);
-		
-	}
-	if (!flags->minus) 
-		len += ft_print_str("0x", 2);
+    int		count;
+    int		i;
+    char	h;
 	
-	if (flags->minus)
-	{
-		len += ft_print_str("0x", 2);
-		len += ft_print_spaces(flags->width - count);
-	}
-			// len += ft_print_str_p("0x");
-			// len += flags->dot;
-        //put string "0x" with added precision flag +length
-		//add width with zeros + length 
-			
-		// }
-		// str = "\0";
-  //  }
+    count = i_count(p);
+       if (!(*s = malloc((count + 1) * sizeof(char))))
+        return (-1);
+    (*s)[count] = '\0';
+    i = count - 1;
+    while (i >= 0)
+    {
+        h = p % 16;
+        if (h < 10)
+            (*s)[i] = h + 48;
+        else
+            (*s)[i] = h + 87;
+        p /= 16;
+        i--;
+    }
+    return (count);
+}
+// int 	proc_hex(t_list *flags, unsigned long i)
+// {
+// 	int count;
+// 	char *str;
+	
+// 	count = i_count(i);
+// 	if (!(str = (char *)malloc(sizeof(char) * (count + 1))))
+// 	return (0);
 // 	if (i)
 // 	{
 // 		while (i)
 // 		{
 // 			i = i / 16 + count;
-// 			if (!(str = (char *)malloc(sizeof(char) * (count + 1))))
-// 				return (0);
 // 			str[ft_strlen(str)] = '\0';
 // 			count--;
 // 			if (i / 16 < 10)
@@ -94,117 +93,94 @@ int    proc_pointer(t_list *flags, unsigned long i)
 			
 // 		}
 // 	}
+// }
+
+int    proc_pointer(t_list *flags, unsigned long i)
+{
+    int len;
+    char *str;
+    int count;
+
+  len = 0;
+  count = ft_to_hex_string(i, &str);
+ // printf("i = %d\n", count);
+	if (flags->minus)
+	{
+		len += ft_print_str_p("0x") + ft_print_str_p(str) + ft_print_spaces(flags->width - count - 2);
+	}
+	// if (flags->dot && flags->width)
+	// { 
+	// 	len += ft_print_str_p("0x") + ft_print_spaces(flags->width); 
+	// }
+	else if (flags->zero)
+         len += ft_print_str_p("0x") + ft_print_zero(flags->width - count - 2) 
+		 	+ ft_print_str_p(str);
+	else //(flags->width >= 0 && !flags->minus)
+	{
+		len += ft_print_spaces(flags->width - count - 2) + ft_print_str_p("0x") + ft_print_str_p(str);
+		
+	}
+	// if (!flags->minus) 
+	// 	len += ft_print_str("0x", 2);
+	
+			// len += ft_print_str_p("0x");
+			// len += flags->dot;
+        //put string "0x" with added precision flag +length
+		//add width with zeros + length 
+			
+		// }
+		// str = "\0";
+  //  }
+// 	
 //     count = 0;
 //   	len += ft_print_str_p("0x");
 // 	  //if (flags->dot >= 0)
-    return (len);
+    return (len - 1);
 }
 
-// char	*ft_strjoin(char *s1, char *s2, int f)
-// {
-// 	int		i;
-// 	int		j;
-// 	char	*str;
 
-// 	i = -1;
-// 	j = -1;
-// 	if (!s1 || !s2)
-// 		return (NULL);
-// 	if (!(str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1))))
-// 		return (NULL);
-// 	while (s1[++i] != '\0')
-// 		str[i] = s1[i];
-// 	while (s2[++j] != '\0')
-// 		str[i + j] = s2[j];
-// 	str[i + j] = '\0';
-// 	if ((f == 1 || f == 3) && s1)
-// 		free((char*)s1);
-// 	if ((f == 2 || f == 3) && s2)
-// 		free((char*)s2);
-// 	return (str);
+
+// int     ft_to_capital_hex_string(unsigned long p, char **s)
+// {
+//     int     count;
+//     int     i;
+//     char    h;
+//     count = i_count(p);
+//     *s = malloc((count + 1) * sizeof(char));
+//     if (!*s)
+//         return (-1);
+//     (*s)[count] = '\0';
+//     i = count - 1;
+//     while (i >= 0)
+//     {
+//         h = p % 16;
+//         if (h < 10)
+//             (*s)[i] = h + 48;
+//         else
+//             (*s)[i] = h + 55;
+//         p /= 16;
+//         i--;
+//     }
+//     return (count);
 // }
-
-// char			*proc_pointer(long long int n, char *base)
+// int     process_pointer(t_flags *fs, unsigned long p)
 // {
-// 	char		*str;
-
-// 	if (!(str = (char *)ft_calloc(sizeof(char), 2)))
-// 		return (NULL);
-// 	if (n < 0)
-// 	{
-// 		str[0] = '-';
-// 		str[1] = '\0';
-// 		str = ft_strjoin(str, proc_pointer(-n, base), 3);
-// 	}
-// 	else if (n >= (long long int)ft_strlen(base))
-// 	{
-// 		free(str);
-// 		str = ft_strjoin(proc_pointer(n / ft_strlen(base), base),
-// 			proc_pointer(n % ft_strlen(base), base), 3);
-// 	}
-// 	else if (n < (long long int)ft_strlen(base) && n >= 0)
-// 	{
-// 		str[0] = base[n];
-// 		str[1] = '\0';
-// 	}
-// 	return (str);
-// }
-
-// int		n_size(int n)
-// {
-// 	int	len;
-
-// 	len = 0;
-// 	if (n == 0)
-// 		return (1);
-// 	if (n < 0)
-// 		len++;
-// 	while (n)
-// 	{
-// 		n = n / 10;
-// 		len++;
-// 	}
-// 	return (len);
-// }
-
-// char	*new_str(char *str, int nlen, int neg, int n)
-// {
-// 	while (nlen >= 0)
-// 	{
-// 		if (nlen == 0 && neg == 1)
-// 		{
-// 			str[0] = '-';
-// 			nlen--;
-// 		}
-// 		else
-// 		{
-// 			str[nlen] = (n % 10) + '0';
-// 			nlen--;
-// 			n = n / 10;
-// 		}
-// 	}
-// 	return (str);
-// }
-
-// char	*ft_itoa(int n)
-// {
-// 	char	*str;
-// 	int		nlen;
-// 	int		neg;
-
-// 	if (n == -2147483648)
-// 		return (ft_strdup("-2147483648"));
-// 	neg = 0;
-// 	nlen = n_size(n);
-// 	str = (char *)malloc(sizeof(char) * (nlen + 1));
-// 	if (str == NULL)
-// 		return (NULL);
-// 	if (n < 0)
-// 	{
-// 		neg = 1;
-// 		n = -n;
-// 	}
-// 	str[nlen] = '\0';
-// 	nlen--;
-// 	return (new_str(str, nlen, neg, n));
+//     int     length;
+//     int     count;
+//     char    *s;
+//     length = 0;
+//     count = ft_to_hex_string(p, &s);
+//     if (count == -1)
+//         return (0);
+//     if (fs->minus)
+//         length += ft_putstr("0x") + ft_putstr(s) +
+//                     ft_print_spaces(fs->width - count - 2);
+//     else if (fs->zero)
+//         length += ft_putstr_fd("0x", 1) +
+//                     ft_print_zeros(fs->width - count - 2) + ft_putstr_fd(s, 1);
+//     else
+//         length += ft_print_spaces(fs->width - count - 2) +
+//                     ft_putstr_fd("0x", 1) + ft_putstr_fd(s, 1);
+//     free(s);
+//     return (length);
 // }

@@ -3,15 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_c_n_s.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falkonrae <falkonrae@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:13:44 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/26 10:27:43 by falkonrae        ###   ########.fr       */
+/*   Updated: 2021/01/26 20:09:22 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
+int		ft_print_zero(int count)
+{
+	int i;
+
+	i = 0;
+	while (i < count)
+	{
+		ft_putchar(48);
+		i++;
+	}
+	return (count);
+}
 
 int		ft_print_spaces(int count)
 {
@@ -53,10 +65,11 @@ int		proc_string(t_list *flags, char *s)
 		kol = flags->dot;
 		len += kol;
 	}
-	if (flags->width >= 0 && !flags->minus)
-	{
-		len += ft_print_spaces(flags->width - kol);
-	}
+	if (flags->width && flags->zero) 
+		len += ft_print_zero(flags->width - kol);
+	// if (flags->width && !flags->minus && !flags->zero)
+	// 	len += ft_print_spaces(flags->width - kol);
+	
 	if (!flags->minus) 
 		len += ft_print_str(s, kol);
 	
