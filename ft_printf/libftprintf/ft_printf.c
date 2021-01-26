@@ -6,7 +6,7 @@
 /*   By: falkonrae <falkonrae@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:03:17 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/25 10:55:20 by falkonrae        ###   ########.fr       */
+/*   Updated: 2021/01/26 11:17:01 by falkonrae        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,17 @@ int 	ft_printf(const char *s, ...)
 
 int		main()
 {
-	char	name = 'A';
+	char	*name = "";
 	int a;
 	int b;
 	//unsigned int days = 7;
-	//a = ft_printf("Hello %0c ! The deadline is in u days.\n", name);
+	a = ft_printf("Hello %.4s! The deadline is in u days.\n", "Aisha");
 	printf("\n");
-	printf("Hello %55d ! The deadline is in u days.\n", 4345);
+	b = printf("Hello %.4s! The deadline is in u days.\n", "Aisha");
 	printf("\n");
 	printf("%d\n", a);
-	printf("%d\n", a);
+	printf("%p\n", name);
+	ft_printf("%p", name);
+	printf("\n");
+	printf("%d\n", b);
 }

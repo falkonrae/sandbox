@@ -6,7 +6,7 @@
 /*   By: falkonrae <falkonrae@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:01:42 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/25 10:43:49 by falkonrae        ###   ########.fr       */
+/*   Updated: 2021/01/26 11:13:10 by falkonrae        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 //#include <io.h> 
 #include <stdio.h>
  #include <unistd.h>
+ #include <stdlib.h>
 
 void	ft_putchar(char c);
 void	ft_putnbr(int n);
@@ -26,6 +27,7 @@ void	check_space(const char *s, int *i, int *len);
 int		ft_isdigit(int c);
 int		ft_istype(int c);
 int		ft_isflag(int c);
+size_t	ft_strlen(char *s);
 
 typedef	struct	s_list
 {
@@ -43,4 +45,9 @@ void	flag_digit(t_list *flags, char s);
 
 
 int		proc_char(t_list *flags, char c);
+int		proc_string(t_list *flags, char *s);
+int   	proc_pointer(t_list *flags, unsigned long i);
+
+void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t count, size_t size);
 #endif

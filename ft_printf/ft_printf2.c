@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: falkonrae <falkonrae@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 15:53:01 by wtahm             #+#    #+#             */
-/*   Updated: 2021/01/22 13:48:54 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/26 09:15:29 by falkonrae        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,7 +280,7 @@ int		process_type(t_flags *fs, va_list args)
 	return (length);
 }
 
-int		parse_flag(t_flags *fs, int i, const char *f, va_list args)
+int		parse_flag(t_list *fs, int i, const char *f, va_list args)
 {
 	while (f[i] && (ft_isdigit(f[i]) || ft_istype(f[i]) || ft_isflag(f[i])
 	|| f[i] == ' '))
@@ -309,7 +309,7 @@ int		parse_flag(t_flags *fs, int i, const char *f, va_list args)
 
 int		process_input(const char *f, va_list args)
 {
-	t_flags fs;
+	t_list fs;
 	int		length;
 	int		i;
 

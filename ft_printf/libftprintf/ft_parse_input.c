@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parce_input.c                                   :+:      :+:    :+:   */
+/*   ft_parse_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: falkonrae <falkonrae@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:13:44 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/25 10:48:32 by falkonrae        ###   ########.fr       */
+/*   Updated: 2021/01/26 11:14:34 by falkonrae        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int		proc_type(t_list *flags, va_list ap)
 {
 	int len;
 
-	len = 0;
+	len = 1;
 	if (flags->type == 'c')
 		len += proc_char(flags, va_arg(ap, int));
-	// if (flags->type == 's')
-	// 	len += proc_string(flags, va_arg(ap, char *));
-	// // if (flags->type == 'p')
-	// //     len += proc_pointer(flags, va_arg(ap, unsigned long));
+	if (flags->type == 's')
+		len += proc_string(flags, va_arg(ap, char *));
+	if (flags->type == 'p')
+	    len += proc_pointer(flags, va_arg(ap, unsigned long int));
 	// // if (flags->type == 'd' || flags->type == 'i')
 	// //     len += proc_int(flags, va_arg(ap, int));
 	// if (flags->type == 'u')

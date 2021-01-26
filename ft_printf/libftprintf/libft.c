@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   libft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: falkonrae <falkonrae@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:48:32 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/23 12:39:49 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/26 10:43:05 by falkonrae        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
+size_t	ft_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
 
 
 void	ft_putchar(char c)
@@ -77,4 +86,28 @@ int	ft_isflag(int c)
 	if (c == '-' || c == '0' || c == '.' || c == '*')
 		return (1);
 	return (0);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned char *buf;
+
+	buf = (unsigned char *)s;
+	while (n > 0)
+	{
+		*buf = '\0';
+		buf++;
+		n--;
+	}
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*p;
+
+	p = (int *)malloc(size * count);
+	if (p == NULL)
+		return (NULL);
+	ft_bzero(p, count * size);
+	return (p);
 }
