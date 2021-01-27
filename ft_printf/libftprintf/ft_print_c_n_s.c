@@ -6,7 +6,7 @@
 /*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:13:44 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/26 20:09:22 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/27 13:25:53 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ int		proc_string(t_list *flags, char *s)
 		kol = flags->dot;
 		len += kol;
 	}
-	if (flags->width && flags->zero) 
+	if (flags->width && !flags->minus && flags->zero <= 0)
+		len += ft_print_spaces(flags->width - kol);
+	if (flags->width && !flags->minus)
 		len += ft_print_zero(flags->width - kol);
-	// if (flags->width && !flags->minus && !flags->zero)
-	// 	len += ft_print_spaces(flags->width - kol);
 	
 	if (!flags->minus) 
 		len += ft_print_str(s, kol);
@@ -81,6 +81,21 @@ int		proc_string(t_list *flags, char *s)
 	return (len - 1);
 }
 
+int		proc_percent(t_list *flags)
+{
+	int len;
+
+	len = 0;
+	if (flags->dot > 0)
+		len += ft_print_zero(flags->dot) + ft_print_str_p("%");
+	else if (flags->minus)
+		len += ft_print_str_p("%") + ft_print_spaces(flags->width-1);
+	else if (flags->zero)
+         len += ft_print_zero(flags->width-1) + ft_print_str_p("%");
+	else 
+		len += ft_print_spaces(flags->width-1) + ft_print_str_p("%");
+	return (len);
+}
 
 int		proc_char(t_list *flags, char c)
 {

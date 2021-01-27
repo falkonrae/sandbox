@@ -6,13 +6,13 @@
 #    By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/01 12:17:34 by vjacob            #+#    #+#              #
-#    Updated: 2021/01/26 18:28:12 by vjacob           ###   ########.fr        #
+#    Updated: 2021/01/27 12:59:16 by vjacob           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= libft.a
+NAME			= libftprintf.a
 
-SRC		= libftprintf.c ft_printf.c ft_print_p.c ft_print_c_n_s.c ft_parse_ops.c \
+SRC		= ft_printf.c ft_print_p.c ft_print_c_n_s.c ft_parse_ops.c \
 		ft_parse_input.c libft.c
 				
 OBJ				= $(SRC:.c=.o)
@@ -36,4 +36,4 @@ fclean:	clean
 
 re:	fclean all
 
-.PHONY: clean fclean all re
+.PHONY: clean fclean all re $(NAME)

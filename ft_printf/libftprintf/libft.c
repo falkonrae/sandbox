@@ -6,7 +6,7 @@
 /*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:48:32 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/26 16:15:27 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/27 12:58:50 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,28 +86,4 @@ int	ft_isflag(int c)
 	if (c == '-' || c == '0' || c == '.' || c == '*')
 		return (1);
 	return (0);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	unsigned char *buf;
-
-	buf = (unsigned char *)s;
-	while (n > 0)
-	{
-		*buf = '\0';
-		buf++;
-		n--;
-	}
-}
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*p;
-
-	p = (int *)malloc(size * count);
-	if (p == NULL)
-		return (NULL);
-	ft_bzero(p, count * size);
-	return (p);
 }

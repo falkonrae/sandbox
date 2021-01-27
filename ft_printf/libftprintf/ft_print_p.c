@@ -6,7 +6,7 @@
 /*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:13:44 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/26 19:58:04 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/27 12:54:18 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int i_count(unsigned long i)
 	//printf("ud long = %ld\n", i);
 	int count;
 	if (!i)
-		return (1);
+		return (0);
 	count = 0;
 	while (i)
 	{
@@ -50,20 +50,46 @@ int		ft_to_hex_string(unsigned long p, char **s)
 {
     int		count;
     int		i;
-    char	h;
+    char	hex;
 	
     count = i_count(p);
-       if (!(*s = malloc((count + 1) * sizeof(char))))
+    if (!(*s = malloc((count + 1) * sizeof(char))))
+        return (-1);
+	if (p == 0)
+		count = 1;
+    (*s)[count] = '\0';
+    i = count - 1;
+    while (i >= 0)
+    {
+        hex = p % 16;
+        if (hex < 10)
+            (*s)[i] = hex + 48;
+        else
+            (*s)[i] = hex + 87;
+        p /= 16;
+        i--;
+    }
+    return (count);
+}
+
+int		ft_to_hex_cap_string(unsigned long p, char **s)
+{
+    int		count;
+    int		i;
+    char	hex;
+	
+    count = i_count(p);
+    if (!(*s = malloc((count + 1) * sizeof(char))))
         return (-1);
     (*s)[count] = '\0';
     i = count - 1;
     while (i >= 0)
     {
-        h = p % 16;
-        if (h < 10)
-            (*s)[i] = h + 48;
+        hex = p % 16;
+        if (hex < 10)
+            (*s)[i] = hex + 48;
         else
-            (*s)[i] = h + 87;
+            (*s)[i] = hex + 55;
         p /= 16;
         i--;
     }
@@ -102,43 +128,50 @@ int    proc_pointer(t_list *flags, unsigned long i)
     int count;
 
   len = 0;
+//	printf("\ni = %ld\n", i);
+//   printf("\ncount = %d\n", count);
+//   printf("width = %d\n", flags->width);
+//  printf("dot = %d\n", flags->dot);
+//   printf("zero = %d\n", flags->zero);
+//     printf("minus = %d\n", flags->minus);
+// printf("str = |%s|\n", str);
   count = ft_to_hex_string(i, &str);
- // printf("i = %d\n", count);
-	if (flags->minus)
-	{
-		len += ft_print_str_p("0x") + ft_print_str_p(str) + ft_print_spaces(flags->width - count - 2);
-	}
-	// if (flags->dot && flags->width)
-	// { 
-	// 	len += ft_print_str_p("0x") + ft_print_spaces(flags->width); 
-	// }
+ 	if (flags->dot > 0)// && i == 0)
+		len += ft_print_str_p("0x") + ft_print_zero(flags->dot - count) + ft_print_str_p(str);
+	else if (flags->minus)
+		len += ft_print_str_p("0x3") + ft_print_str_p(str) + ft_print_spaces(flags->width - count - 2);
 	else if (flags->zero)
-         len += ft_print_str_p("0x") + ft_print_zero(flags->width - count - 2) 
+         len += ft_print_str_p("0x4") + ft_print_zero(flags->width - count - 2) 
 		 	+ ft_print_str_p(str);
-	else //(flags->width >= 0 && !flags->minus)
-	{
+	else 
 		len += ft_print_spaces(flags->width - count - 2) + ft_print_str_p("0x") + ft_print_str_p(str);
-		
-	}
-	// if (!flags->minus) 
-	// 	len += ft_print_str("0x", 2);
-	
-			// len += ft_print_str_p("0x");
-			// len += flags->dot;
-        //put string "0x" with added precision flag +length
-		//add width with zeros + length 
-			
-		// }
-		// str = "\0";
-  //  }
-// 	
-//     count = 0;
-//   	len += ft_print_str_p("0x");
-// 	  //if (flags->dot >= 0)
+	free (str);
     return (len - 1);
 }
 
+int    proc_hex(t_list *flags, unsigned long i, int cap)
+{
+	int len;
+	char *str;
+	int count;
 
+	len = 0;
+	if (!cap)
+		count = ft_to_hex_string(i, &str);
+	if (cap)
+		count = ft_to_hex_cap_string(i, &str);
+ 	if (flags->dot > 0)
+		len += ft_print_zero(flags->dot - count) + ft_print_str_p(str);
+	else if (flags->minus)
+		len += ft_print_str_p(str) + ft_print_spaces(flags->width - count);
+	else if (flags->zero)
+         len +=  ft_print_zero(flags->width - count) 
+		 	+ ft_print_str_p(str);
+	else 
+		len += ft_print_spaces(flags->width - count) + ft_print_str_p(str);
+	free (str);
+    return (len - 1);
+}
 
 // int     ft_to_capital_hex_string(unsigned long p, char **s)
 // {

@@ -6,7 +6,7 @@
 /*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:01:42 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/26 19:54:55 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/27 13:19:52 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ size_t	ft_strlen(char *s);
 int		ft_print_spaces(int count);
 int		ft_print_zero(int count);
 int		ft_print_str(char *s, int count);
+int		ft_print_str_p(char *s);
 
 typedef	struct	s_list
 {
@@ -50,6 +51,8 @@ void	flag_digit(t_list *flags, char s);
 int		proc_char(t_list *flags, char c);
 int		proc_string(t_list *flags, char *s);
 int   	proc_pointer(t_list *flags, unsigned long i);
+int    	proc_hex(t_list *flags, unsigned long i, int cap);
+int		proc_percent(t_list *flags);
 
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
