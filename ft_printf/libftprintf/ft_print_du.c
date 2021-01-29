@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_du.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: falkonrae <falkonrae@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:13:44 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/29 15:00:55 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/30 00:31:09 by falkonrae        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	process_int_positive(t_list *flags, int count, int dot, char *s)
 		return (ft_print_zero(flags->width - count) + ft_putstr(s));
 	else
 		return (ft_print_space(flags->width - dot - count) +
-				ft_print_zero(dot) + ft_putstr(s));
+				ft_print_zero(dot) + ft_putstr(s));zzzzzzz
 }
 
 int	process_int_negative(t_list *flags, int count, int dot, char *s)
@@ -47,7 +47,7 @@ int	proc_int(t_list *flags, int i)
 	char	*s;
 
 	if (i == 0 && flags->dot == 0)
-		return (ft_print_space(flags->width));
+		return (ft_space_zero(flags->width, 0));
 	s = ft_itoa(i);
 	if (!s)
 		return (0);

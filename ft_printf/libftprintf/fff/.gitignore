@@ -1,0 +1,17 @@
+.DS_Store
+a.out
+*.h.gch
+*.o
+test.c
+./*.o
+main_for_printf.c
+pft/
+.vscode
+*.a
+*.o
+test_main.c
+42TESTERS-PRINTF
+a.out.dSYM
+.git
+.
+..

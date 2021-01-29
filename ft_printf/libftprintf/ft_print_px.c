@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_px.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: falkonrae <falkonrae@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:13:44 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/29 16:20:41 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/29 23:57:31 by falkonrae        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,18 +89,26 @@ int		proc_pointer(t_list *flags, unsigned long i)
 	count = ft_hex(i, &str);
 	// printf("\ncount = %d\n", count);
 	//printf("width = %d\n", flags->width);
-	if (flags->dot > 0)
-		len += ft_putstr("0x6") + ft_print_zero(flags->dot - count)
-			+ ft_putstr(str);
-	else if (flags->minus)
-		len += ft_putstr("0x3") + ft_putstr(str)
-			+ ft_print_space(flags->width - count - 2);
-	else if (flags->zero)
-		len += ft_putstr("0x4") + ft_print_zero(flags->width - count - 2)
-			+ ft_putstr(str);
-	else
-		len += ft_print_space(flags->width - count - 2) + ft_putstr("0x")
-			+ ft_putstr(str);
+	// if (flags->dot > 0)
+	// 	len += ft_putstr("0x") + ft_space_zero(flags->dot - count, 1)
+	// 		+ ft_putstr(str);
+	// else if (flags->minus)
+	// 	len += ft_putstr("0x") + ft_putstr(str)
+	// 		+ ft_space_zero(flags->width - count - 2, 0);
+	// else if (flags->zero)
+	// 	len += ft_putstr("0x") + ft_space_zero(flags->width - count - 2, 1)
+	// 		+ ft_putstr(str);
+	// else
+	// 	len += ft_space_zero(flags->width - count - 2, 0) + ft_putstr("0x")
+	// 		+ ft_putstr(str);
+	if (flags->zero && flags->width) // проверить на ноль перед 0х
+		len += ft_space_zero(flags->width - count - 2, 1);
+	else if (!flags->minus && flags->width)
+		len += ft_space_zero(flags->width - count - 2, 0);
+	len += ft_putstr("0x") + ft_putstr(str);
+	if (flags->minus)
+		len += ft_space_zero(flags->width - count - 2, 0);
+	return (len);
 	free(str);
 	return (len);
 }
@@ -117,14 +125,14 @@ int		proc_hex(t_list *flags, unsigned long i, int cap)
 	if (cap)
 		count = ft_hex_cap(i, &str);
 	if (flags->dot > 0)
-		len += ft_print_zero(flags->dot - count) + ft_putstr(str);
+		len += ft_space_zero(flags->dot - count, 1) + ft_putstr(str);
 	else if (flags->minus)
-		len += ft_putstr(str) + ft_print_space(flags->width - count);
+		len += ft_putstr(str) + ft_space_zero(flags->width - count, 0);
 	else if (flags->zero)
-		len += ft_print_zero(flags->width - count)
+		len += ft_space_zero(flags->width - count, 1)
 			+ ft_putstr(str);
 	else
-		len += ft_print_space(flags->width - count) + ft_putstr(str);
+		len += ft_space_zero(flags->width - count, 0) + ft_putstr(str);
 	free(str);
 	return (len);
 }

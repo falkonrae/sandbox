@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: falkonrae <falkonrae@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:13:44 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/29 18:02:59 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/29 22:24:52 by falkonrae        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		parse_flags(const char *s, int i, t_list *flags, va_list ap)
 		i++;
 		if (!(ft_isdigit(s[i]) || ft_istype(s[i]) || ft_isflag(s[i])))
 			return (-1);
-		if (s[i] == '0' && !flags->minus && !flags->width)
+		if (s[i] == '0' && !flags->minus && !flags->width)//  && fs->precision)
 			flags->zero = 1;
 		if (s[i] == '.')
 			i = flag_dot(s, i, flags, ap);
@@ -96,7 +96,7 @@ int		ft_parse_input(const char *s, va_list ap)
 		}
 		if (flags.type)
 			len += proc_type(&flags, ap);
-		else //if (s[i] != '%' || !flags.type)
+		else
 			len += ft_putchar(s[i]);
 		i++;
 	}

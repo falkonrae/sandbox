@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: falkonrae <falkonrae@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:01:42 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/29 15:01:19 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/29 22:40:35 by falkonrae        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int		ft_isdigit(int c);
 int		ft_istype(int c);
 int		ft_isflag(int c);
 size_t	ft_strlen(char *s);
-int		ft_print_space(int count);
-int		ft_print_zero(int count);
+// int		ft_print_space(int count);
+// int		ft_print_zero(int count);
 // char	*ft_itoa(int n);
 // char	*ft_strdup(char *s1);
-
+int		ft_space_zero(int count, int c);
 typedef	struct	s_list
 {
 	int			type;
