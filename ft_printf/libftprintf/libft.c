@@ -6,7 +6,7 @@
 /*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:48:32 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/27 12:58:50 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/29 18:06:57 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,48 +23,56 @@ size_t	ft_strlen(char *s)
 }
 
 
-void	ft_putchar(char c)
+int	ft_putchar(char c)
 {
 	write(1, &c, 1);
+	return (1);
 }
 
-void	ft_putstr(char *s)
+int	ft_putstr(char *s)
 {
+	int		i;
+	
+	i = 0;
 	if (s)
-		while (*s)
-			ft_putchar(*(s++));
+		while (s[i])
+			ft_putchar(s[i++]);
+	return (i);
 }
 
-void	ft_putnbr(int n)
+int		ft_putstr_count(char *s, int count)
 {
-	if (n == -2147483648)
+	int i;
+
+	i = 0;
+	while (i < count)
 	{
-		ft_putstr("-2");
-		n = 147483648;
+		ft_putchar(s[i]);
+		i++;
 	}
-	if (n < 0)
-	{
-		ft_putchar('-');
-		n = -n;
-	}
-	if (n > 9)
-	{
-		ft_putnbr(n / 10);
-		ft_putchar(n % 10 + '0');
-	}
-	else
-		ft_putchar(n + '0');
+	return (i);
 }
 
-// void		check_space(const char *s, int *i, int *len)
+// int	ft_putnbr(int n)
 // {
-// 	*i += 1;
-// 	while (s[*i] == ' ')
+// 	if (n == -2147483648)
 // 	{
-// 		*i += 1;
-// 		*len += 1;
+// 		ft_putstr("-2");
+// 		n = 147483648;
 // 	}
-// }   для бонусов
+// 	if (n < 0)
+// 	{
+// 		ft_putchar('-');
+// 		n = -n;
+// 	}
+// 	if (n > 9)
+// 	{
+// 		ft_putnbr(n / 10);
+// 		ft_putchar(n % 10 + '0');
+// 	}
+// 	else
+// 		ft_putchar(n + '0');
+// }
 
 int	ft_isdigit(int c)
 {
@@ -73,17 +81,3 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-int	ft_istype(int c)
-{
-	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' 
-	|| c == 'u' || c == 'x' || c == 'X' || c == '%')
-		return (1);
-	return (0);
-}
-
-int	ft_isflag(int c)
-{
-	if (c == '-' || c == '0' || c == '.' || c == '*')
-		return (1);
-	return (0);
-}

@@ -6,20 +6,17 @@
 /*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:13:44 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/27 13:36:18 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/29 18:02:59 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-
-
-
 int		proc_type(t_list *flags, va_list ap)
 {
 	int len;
 
-	len = 1;
+	len = 0   ;
 	if (flags->type == 'c')
 		len += proc_char(flags, va_arg(ap, int));
 	if (flags->type == 's')
@@ -27,9 +24,9 @@ int		proc_type(t_list *flags, va_list ap)
 	if (flags->type == 'p')
 		len += proc_pointer(flags, va_arg(ap, unsigned long int));
 	// if (flags->type == 'd' || flags->type == 'i')
-	//     len += proc_int(flags, va_arg(ap, int));
+	// 	len += proc_int(flags, va_arg(ap, int));
 	// if (flags->type == 'u')
-		// len += proc_uint(flags, va_arg(ap, unsigned int));
+	// 	len += proc_uint(flags, va_arg(ap, unsigned int));
 	if (flags->type == 'x')
 		len += proc_hex(flags, va_arg(ap, unsigned int), 0);
 	if (flags->type == 'X')
@@ -44,7 +41,9 @@ int		parse_flags(const char *s, int i, t_list *flags, va_list ap)
 	while (s[i] && (ft_isdigit(s[i]) || ft_istype(s[i]) || ft_isflag(s[i])))
 	{
 		i++;
-		if (s[i] == 48 && !flags->minus)
+		if (!(ft_isdigit(s[i]) || ft_istype(s[i]) || ft_isflag(s[i])))
+			return (-1);
+		if (s[i] == '0' && !flags->minus && !flags->width)
 			flags->zero = 1;
 		if (s[i] == '.')
 			i = flag_dot(s, i, flags, ap);
@@ -58,11 +57,13 @@ int		parse_flags(const char *s, int i, t_list *flags, va_list ap)
 		if (ft_isdigit(s[i]))
 			flag_digit(flags, s[i]);
 		if (ft_istype(s[i]))
+		{
 			flags->type = s[i];
+			break ;
+		}
 	}
 	return (i);
 }
-
 
 void	init_list(t_list *flags)
 {
@@ -88,14 +89,15 @@ int		ft_parse_input(const char *s, va_list ap)
 			return (len);
 		init_list(&flags);
 		if (s[i] == '%')
+		{
 			i = parse_flags(s, i, &flags, ap);
+			if (!s[i] && !flags.type)
+				return (-1);
+		}
 		if (flags.type)
 			len += proc_type(&flags, ap);
-		if (s[i] != '%' || !flags.type)
-		{
-			ft_putchar(s[i]);
-			len++;
-		}
+		else //if (s[i] != '%' || !flags.type)
+			len += ft_putchar(s[i]);
 		i++;
 	}
 }

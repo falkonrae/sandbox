@@ -3,17 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_ops.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falkonrae <falkonrae@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:13:44 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/26 08:31:48 by falkonrae        ###   ########.fr       */
+/*   Updated: 2021/01/29 14:07:02 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
+int		ft_istype(int c)
+{
+	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i'
+	|| c == 'u' || c == 'x' || c == 'X' || c == '%')
+		return (1);
+	return (0);
+}
 
-void		flag_digit(t_list *flags, char s)
+int		ft_isflag(int c)
+{
+	if (c == '-' || c == '0' || c == '.' || c == '*')
+		return (1);
+	return (0);
+}
+
+void	flag_digit(t_list *flags, char s)
 {
 	if (flags->star == 1)
 		flags->width = 0;
@@ -21,7 +35,7 @@ void		flag_digit(t_list *flags, char s)
 		flags->width = flags->width * 10 + (s - '0');
 }
 
-void 	flag_width(t_list *flags, va_list ap)
+void	flag_width(t_list *flags, va_list ap)
 {
 	flags->star = 1;
 	flags->width = va_arg(ap, int);
@@ -33,7 +47,7 @@ void 	flag_width(t_list *flags, va_list ap)
 	}
 }
 
-int 	flag_dot(const char *s, int i, t_list *flags, va_list ap)
+int		flag_dot(const char *s, int i, t_list *flags, va_list ap)
 {
 	i++;
 	if (s[i] == '*')

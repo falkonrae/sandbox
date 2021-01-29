@@ -6,14 +6,14 @@
 #    By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/01 12:17:34 by vjacob            #+#    #+#              #
-#    Updated: 2021/01/27 12:59:16 by vjacob           ###   ########.fr        #
+#    Updated: 2021/01/29 15:01:32 by vjacob           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= libftprintf.a
 
-SRC		= ft_printf.c ft_print_p.c ft_print_c_n_s.c ft_parse_ops.c \
-		ft_parse_input.c libft.c
+SRC		= ft_printf.c ft_print_px.c ft_print_csper.c ft_parse_ops.c \
+		ft_parse_input.c libft.c 
 				
 OBJ				= $(SRC:.c=.o)
 

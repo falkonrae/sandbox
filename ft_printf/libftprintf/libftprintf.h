@@ -6,7 +6,7 @@
 /*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:01:42 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/27 13:19:52 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/29 15:01:19 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@
  #include <unistd.h>
  #include <stdlib.h>
 
-void	ft_putchar(char c);
-void	ft_putnbr(int n);
-void	ft_putstr(char *s);
+int		ft_putchar(char c);
+int		ft_putnbr(int n);
+int		ft_putstr(char *s);
+int		ft_putstr_count(char *s, int count);
 int		ft_parse_input(const char *s, va_list ap);
-void	check_space(const char *s, int *i, int *len);
 int		ft_isdigit(int c);
 int		ft_istype(int c);
 int		ft_isflag(int c);
 size_t	ft_strlen(char *s);
-int		ft_print_spaces(int count);
+int		ft_print_space(int count);
 int		ft_print_zero(int count);
-int		ft_print_str(char *s, int count);
-int		ft_print_str_p(char *s);
+// char	*ft_itoa(int n);
+// char	*ft_strdup(char *s1);
 
 typedef	struct	s_list
 {
@@ -53,6 +53,7 @@ int		proc_string(t_list *flags, char *s);
 int   	proc_pointer(t_list *flags, unsigned long i);
 int    	proc_hex(t_list *flags, unsigned long i, int cap);
 int		proc_percent(t_list *flags);
+int		proc_int(t_list *flags, int i);
 
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
