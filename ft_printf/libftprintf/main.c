@@ -17,10 +17,10 @@ int		main()
 	// a = ft_printf("|%-0155p|\n", name);
 	// printf("%d\n", b);
 	// printf("%d\n", a);
-	b = printf("|%00008.X|\n", 15000);
-	a = ft_printf("|%00008.X|\n", 15000);
-	printf("%d\n", b);
-	printf("%d\n", a);
+	// b = printf("|%00008.X|\n", 15000);
+	// a = ft_printf("|%00008.X|\n", 15000);
+	// printf("%d\n", b);
+	// printf("%d\n", a);
 	// b = printf("|%%%%%%|\n");
 	// a = ft_printf("|%%%%%%|\n");
 	// printf("%d\n", b);
@@ -35,5 +35,12 @@ int		main()
 	// b = ft_printf("|%-5c|\n", 'A');
 	// printf("%d\n", a);
 	// printf("%d\n", b);
-	
+	// b = printf("|%-.10d|\n", -15000);
+	// a = ft_printf("|%-.10d|\n", -15000);
+	// printf("%d\n", b);
+	// printf("%d\n", a);
+	b = printf("|%010u|\n", -1500550);
+	a = ft_printf("|%010u|\n", -1500550);
+	printf("%d\n", b);
+	printf("%d\n", a);
 }
