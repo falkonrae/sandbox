@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falkonrae <falkonrae@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:01:42 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/30 10:41:43 by falkonrae        ###   ########.fr       */
+/*   Updated: 2021/01/30 19:36:38 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 # define LIBFTPRINTF_H
 
 #include <stdarg.h>
-//#include <io.h> 
-#include <stdio.h>
  #include <unistd.h>
  #include <stdlib.h>
- # include <limits.h>
+# include <limits.h>
 
 int		ft_putchar(char c);
 int		ft_putnbr(int n);
@@ -29,8 +27,6 @@ int		ft_isdigit(int c);
 int		ft_istype(int c);
 int		ft_isflag(int c);
 size_t	ft_strlen(char *s);
-// int		ft_print_space(int count);
-// int		ft_print_zero(int count);
 char	*ft_itoa(int n);
 char	*ft_strdup(char *s1);
 int		ft_space_zero(int count, int c);
@@ -43,12 +39,9 @@ typedef	struct	s_list
 	int 		dot;
 	int 		star;
 }				t_list;
-
 int 	flag_dot(const char *s, int i, t_list *flags, va_list ap);
 void 	flag_width(t_list *flags, va_list ap);
 void	flag_digit(t_list *flags, char s);
-
-
 int		proc_char(t_list *flags, char c);
 int		proc_string(t_list *flags, char *s);
 int   	proc_pointer(t_list *flags, unsigned long i);

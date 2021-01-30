@@ -6,7 +6,7 @@
 /*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:13:44 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/29 14:07:02 by vjacob           ###   ########.fr       */
+/*   Updated: 2021/01/30 17:53:00 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,17 @@ void	flag_width(t_list *flags, va_list ap)
 
 int		flag_dot(const char *s, int i, t_list *flags, va_list ap)
 {
+	flags->dot = 0;
 	i++;
 	if (s[i] == '*')
 	{
 		flags->dot = va_arg(ap, int);
+		if (flags->dot < 0)
+			flags->dot = -1;
 		i++;
 	}
-	if (s[i] != '*')
+	else
 	{
-		flags->dot = 0;
 		while (ft_isdigit(s[i]))
 		{
 			flags->dot = flags->dot * 10 + (s[i] - '0');

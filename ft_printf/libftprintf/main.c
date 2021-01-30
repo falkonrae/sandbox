@@ -8,17 +8,17 @@ int		main()
 	int b;
 
 	//unsigned int days = 7;
-	// a = ft_printf("Hello %-33.3s! The deadline is in u days.\n", "Aisha");
-	// b = printf("Hello %-33.3s! The deadline is in u days.\n", "Aisha");
+	// a = ft_printf("Hello %-43.3s! The deadline is in u days.\n", "Aisha");
+	// b = printf("Hello %-43.3s! The deadline is in u days.\n", "Aisha");
 	// printf("%d\n", a);
 	// printf("%d\n", b);
 	// 	printf("\n");
-	// b = printf("|%-0155p|\n", name);
-	// a = ft_printf("|%-0155p|\n", name);
+	// b = printf("|%5.p|\n", NULL);
+	// a = ft_printf("|%5.p|\n", NULL);
 	// printf("%d\n", b);
 	// printf("%d\n", a);
-	// b = printf("|%00008.X|\n", 15000);
-	// a = ft_printf("|%00008.X|\n", 15000);
+	// b = printf("|%8.3x|\n", 8375);
+	// a = ft_printf("|%8.3x|\n", 8375);
 	// printf("%d\n", b);
 	// printf("%d\n", a);
 	// b = printf("|%%%%%%|\n");
@@ -39,8 +39,20 @@ int		main()
 	// a = ft_printf("|%-.10d|\n", -15000);
 	// printf("%d\n", b);
 	// printf("%d\n", a);
-	b = printf("|%010u|\n", -1500550);
-	a = ft_printf("|%010u|\n", -1500550);
+	// b = printf("|%.*s|\n", 3, "hello");
+	// a = ft_printf("|%.*s|\n", 3, "hello");
+	// printf("%d\n", b);
+	// printf("%d\n", a);
+	// b = printf("|%.*s|\n", 3, "hello");
+	// a = ft_printf("|%.*s|\n", 3, "hello");
+	// printf("%d\n", b);
+	// printf("%d\n", a);
+	// b = printf("|%-8.5i|\n", 34);
+	// a = ft_printf("|%-8.5i|\n", 34);
+	// printf("%d\n", b);
+	// printf("%d\n", a);
+	b = printf("|this %i number|\n", -267);
+	a = ft_printf("|this %i number|\n", -267);
 	printf("%d\n", b);
 	printf("%d\n", a);
 }

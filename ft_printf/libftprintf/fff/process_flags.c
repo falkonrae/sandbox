@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_flags.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtahm <wtahm@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 15:53:01 by wtahm             #+#    #+#             */
-/*   Updated: 2021/01/26 11:25:05 by wtahm            ###   ########.fr       */
+/*   Updated: 2021/01/30 17:43:45 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int		flag_dot(t_flags *fs, const char *f, int i, va_list args)
 	if (f[i] == '*')
 	{
 		fs->precision = va_arg(args, int);
-		if (fs->precision < 0)
-			fs->precision = -1;
+		if (flags->precision < 0)
+			flags->precision = -1;
 		i++;
 	}
 	else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: falkonrae <falkonrae@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vjacob <vjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:13:44 by vjacob            #+#    #+#             */
-/*   Updated: 2021/01/30 10:51:54 by falkonrae        ###   ########.fr       */
+/*   Updated: 2021/01/30 19:31:22 by vjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		proc_type(t_list *flags, va_list ap)
 {
 	int len;
 
-	len = 0   ;
+	len = 0;
 	if (flags->type == 'c')
 		len += proc_char(flags, va_arg(ap, int));
 	if (flags->type == 's')
@@ -38,12 +38,12 @@ int		proc_type(t_list *flags, va_list ap)
 
 int		parse_flags(const char *s, int i, t_list *flags, va_list ap)
 {
-	while (s[i] && (ft_isdigit(s[i]) || ft_istype(s[i]) || ft_isflag(s[i])))
+	while (s[i])
 	{
 		i++;
 		if (!(ft_isdigit(s[i]) || ft_istype(s[i]) || ft_isflag(s[i])))
 			return (-1);
-		if (s[i] == '0' && !flags->minus && !flags->width)//  && fs->precision)
+		if (s[i] == '0' && !flags->minus && !flags->width)
 			flags->zero = 1;
 		if (s[i] == '.')
 			i = flag_dot(s, i, flags, ap);
