@@ -3,6 +3,30 @@
 #include <clocale>
 using namespace std;
 
+void sort_bubble (int A[], int n)
+{
+int i, k; // Количество сравнений
+do // Повторять просмотр...
+{
+k = 0;
+i = 0;
+while (i<n – 1)
+{
+	if (A[i] >A[i+1]) // Сравнить соседей
+	{
+		int buf = A[i]; // Переставить соседей
+		A[i]=A[i+1];
+		A[i+1]=buf;
+		K++;
+	}
+	i++;
+}
+
+}
+}
+while(k != 0); //Пока есть перестановки
+} 
+
 void sort_insert (int A[], int n)
 {
     int i = 1;
@@ -83,7 +107,8 @@ int main()
     for (int i = 0; i < n - 1; i++) 
         cout << mas[i] << ", ";
     cout << mas[n - 1] << "]" << "\n";
-    sort_insert (mas1, n);
+    //sort_insert (mas1, n);
+	sort_bubble(mas1, n);
         cout << "Копия массива после сортировки: [";
     for (int i = 0; i < n - 1; i++) 
         cout << mas[i] << ", ";
