@@ -1,0 +1,14 @@
+C:\Users\amara\source\repos\ConsoleApp123\ConsoleApp123\bin\Debug\netcoreapp3.1\ConsoleApp123.exe
+C:\Users\amara\source\repos\ConsoleApp123\ConsoleApp123\bin\Debug\netcoreapp3.1\ConsoleApp123.deps.json
+C:\Users\amara\source\repos\ConsoleApp123\ConsoleApp123\bin\Debug\netcoreapp3.1\ConsoleApp123.runtimeconfig.json
+C:\Users\amara\source\repos\ConsoleApp123\ConsoleApp123\bin\Debug\netcoreapp3.1\ConsoleApp123.runtimeconfig.dev.json
+C:\Users\amara\source\repos\ConsoleApp123\ConsoleApp123\bin\Debug\netcoreapp3.1\ConsoleApp123.dll
+C:\Users\amara\source\repos\ConsoleApp123\ConsoleApp123\bin\Debug\netcoreapp3.1\ConsoleApp123.pdb
+C:\Users\amara\source\repos\ConsoleApp123\ConsoleApp123\obj\Debug\netcoreapp3.1\ConsoleApp123.csproj.AssemblyReference.cache
+C:\Users\amara\source\repos\ConsoleApp123\ConsoleApp123\obj\Debug\netcoreapp3.1\ConsoleApp123.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\amara\source\repos\ConsoleApp123\ConsoleApp123\obj\Debug\netcoreapp3.1\ConsoleApp123.AssemblyInfoInputs.cache
+C:\Users\amara\source\repos\ConsoleApp123\ConsoleApp123\obj\Debug\netcoreapp3.1\ConsoleApp123.AssemblyInfo.cs
+C:\Users\amara\source\repos\ConsoleApp123\ConsoleApp123\obj\Debug\netcoreapp3.1\ConsoleApp123.csproj.CoreCompileInputs.cache
+C:\Users\amara\source\repos\ConsoleApp123\ConsoleApp123\obj\Debug\netcoreapp3.1\ConsoleApp123.dll
+C:\Users\amara\source\repos\ConsoleApp123\ConsoleApp123\obj\Debug\netcoreapp3.1\ConsoleApp123.pdb
+C:\Users\amara\source\repos\ConsoleApp123\ConsoleApp123\obj\Debug\netcoreapp3.1\ConsoleApp123.genruntimeconfig.cache
