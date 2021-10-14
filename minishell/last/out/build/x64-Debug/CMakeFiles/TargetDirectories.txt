@@ -1,0 +1,3 @@
+C:/Users/amara/source/repos/sandbox/minishell/last/out/build/x64-Debug/CMakeFiles/minishell.dir
+C:/Users/amara/source/repos/sandbox/minishell/last/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Users/amara/source/repos/sandbox/minishell/last/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
