@@ -1,0 +1,14 @@
+C:\Users\amara\source\repos\sandbox\uni\csh_lab2\csh_lab2\obj\Debug\netcoreapp3.1\csh_lab2.csproj.AssemblyReference.cache
+C:\Users\amara\source\repos\sandbox\uni\csh_lab2\csh_lab2\obj\Debug\netcoreapp3.1\csh_lab2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\amara\source\repos\sandbox\uni\csh_lab2\csh_lab2\obj\Debug\netcoreapp3.1\csh_lab2.AssemblyInfoInputs.cache
+C:\Users\amara\source\repos\sandbox\uni\csh_lab2\csh_lab2\obj\Debug\netcoreapp3.1\csh_lab2.AssemblyInfo.cs
+C:\Users\amara\source\repos\sandbox\uni\csh_lab2\csh_lab2\obj\Debug\netcoreapp3.1\csh_lab2.csproj.CoreCompileInputs.cache
+C:\Users\amara\source\repos\sandbox\uni\csh_lab2\csh_lab2\bin\Debug\netcoreapp3.1\csh_lab2.exe
+C:\Users\amara\source\repos\sandbox\uni\csh_lab2\csh_lab2\bin\Debug\netcoreapp3.1\csh_lab2.deps.json
+C:\Users\amara\source\repos\sandbox\uni\csh_lab2\csh_lab2\bin\Debug\netcoreapp3.1\csh_lab2.runtimeconfig.json
+C:\Users\amara\source\repos\sandbox\uni\csh_lab2\csh_lab2\bin\Debug\netcoreapp3.1\csh_lab2.runtimeconfig.dev.json
+C:\Users\amara\source\repos\sandbox\uni\csh_lab2\csh_lab2\bin\Debug\netcoreapp3.1\csh_lab2.dll
+C:\Users\amara\source\repos\sandbox\uni\csh_lab2\csh_lab2\bin\Debug\netcoreapp3.1\csh_lab2.pdb
+C:\Users\amara\source\repos\sandbox\uni\csh_lab2\csh_lab2\obj\Debug\netcoreapp3.1\csh_lab2.dll
+C:\Users\amara\source\repos\sandbox\uni\csh_lab2\csh_lab2\obj\Debug\netcoreapp3.1\csh_lab2.pdb
+C:\Users\amara\source\repos\sandbox\uni\csh_lab2\csh_lab2\obj\Debug\netcoreapp3.1\csh_lab2.genruntimeconfig.cache

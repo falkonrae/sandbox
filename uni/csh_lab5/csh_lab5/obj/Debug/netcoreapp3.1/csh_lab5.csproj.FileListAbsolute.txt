@@ -1,0 +1,16 @@
+C:\Users\amara\source\repos\sandbox\uni\csh_lab5\csh_lab5\bin\Debug\netcoreapp3.1\csh_lab5.exe
+C:\Users\amara\source\repos\sandbox\uni\csh_lab5\csh_lab5\bin\Debug\netcoreapp3.1\csh_lab5.deps.json
+C:\Users\amara\source\repos\sandbox\uni\csh_lab5\csh_lab5\bin\Debug\netcoreapp3.1\csh_lab5.runtimeconfig.json
+C:\Users\amara\source\repos\sandbox\uni\csh_lab5\csh_lab5\bin\Debug\netcoreapp3.1\csh_lab5.runtimeconfig.dev.json
+C:\Users\amara\source\repos\sandbox\uni\csh_lab5\csh_lab5\bin\Debug\netcoreapp3.1\csh_lab5.dll
+C:\Users\amara\source\repos\sandbox\uni\csh_lab5\csh_lab5\bin\Debug\netcoreapp3.1\csh_lab5.pdb
+C:\Users\amara\source\repos\sandbox\uni\csh_lab5\csh_lab5\obj\Debug\netcoreapp3.1\csh_lab5.csproj.AssemblyReference.cache
+C:\Users\amara\source\repos\sandbox\uni\csh_lab5\csh_lab5\obj\Debug\netcoreapp3.1\csh_lab5.Form1.resources
+C:\Users\amara\source\repos\sandbox\uni\csh_lab5\csh_lab5\obj\Debug\netcoreapp3.1\csh_lab5.csproj.GenerateResource.cache
+C:\Users\amara\source\repos\sandbox\uni\csh_lab5\csh_lab5\obj\Debug\netcoreapp3.1\csh_lab5.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\amara\source\repos\sandbox\uni\csh_lab5\csh_lab5\obj\Debug\netcoreapp3.1\csh_lab5.AssemblyInfoInputs.cache
+C:\Users\amara\source\repos\sandbox\uni\csh_lab5\csh_lab5\obj\Debug\netcoreapp3.1\csh_lab5.AssemblyInfo.cs
+C:\Users\amara\source\repos\sandbox\uni\csh_lab5\csh_lab5\obj\Debug\netcoreapp3.1\csh_lab5.csproj.CoreCompileInputs.cache
+C:\Users\amara\source\repos\sandbox\uni\csh_lab5\csh_lab5\obj\Debug\netcoreapp3.1\csh_lab5.dll
+C:\Users\amara\source\repos\sandbox\uni\csh_lab5\csh_lab5\obj\Debug\netcoreapp3.1\csh_lab5.pdb
+C:\Users\amara\source\repos\sandbox\uni\csh_lab5\csh_lab5\obj\Debug\netcoreapp3.1\csh_lab5.genruntimeconfig.cache
